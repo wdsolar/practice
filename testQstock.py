@@ -12,24 +12,22 @@ shareHJ=wdspd.DataFrame({'持仓':[0,0,0,3000,0,0,7000,0,0,
 shareAll=shareDW+shareHJ
 cashDW=1151.4
 cashHJ=66.87
-for i in range(3600):
-    #获取行情数据
-    df=qs.realtime_data(code=hold)
+#获取行情数据
+df=qs.realtime_data(code=hold)
 
-    TotalStock=shareAll['持仓']*df['最新']
-    # temp=(shareDW*df['最新']).sort_values().sum()
-    TotalDW=(shareDW['持仓']*df['最新']).sum()+cashDW #东吴
-    TotalHJ=(shareHJ['持仓']*df['最新']).sum()+cashHJ #华金
+TotalStock=shareAll['持仓']*df['最新']
+# temp=(shareDW*df['最新']).sort_values().sum()
+TotalDW=(shareDW['持仓']*df['最新']).sum()+cashDW #东吴
+TotalHJ=(shareHJ['持仓']*df['最新']).sum()+cashHJ #华金
 
 
-    Total=TotalStock.sum()+cashDW+cashHJ
+Total=TotalStock.sum()+cashDW+cashHJ
 
-    # df.insert(3,column='持仓',[1,2,3])
-    df.insert(2,'持仓',shareAll['持仓'])
-    df.insert(3,'市值',shareAll['持仓']*df['最新'])
+# df.insert(3,column='持仓',[1,2,3])
+df.insert(2,'持仓',shareAll['持仓'])
+df.insert(3,'市值',shareAll['持仓']*df['最新'])
 
-    print(df['市值'].T)
-    print(time.ctime())
-    time.sleep(5)
+print(df['市值'].T)
+print(time.ctime())
    
 
