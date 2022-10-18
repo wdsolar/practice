@@ -35,9 +35,15 @@ def t():
     # print(df[['名称','涨幅','市值','盈亏','最新']])
     TotalBo=df['盈亏'].sum()
     # print(df.loc[2:4,['盈亏','涨幅','最新']])
-    print('%.2f *** %.2f%%'%(TotalBo,TotalBo/TotalYesterday*100))
+    #DW 盈
+    EarnDW=(shareDW['持仓']*(df['最新']-df['昨收'])).sum()
+    EarnHJ=(shareHJ['持仓']*(df['最新']-df['昨收'])).sum()
+
+    # print(EarnDw)
+    print('\n%.2f *** %.2f%%'%(TotalBo,TotalBo/TotalYesterday*100))
     # print("%f"%TotalBo)
-    print('DW: %.2f  HJ: %.2f'%(TotalDW,TotalHJ))
+    print('DW: %.2f/%.2f/%.2f%%  HJ: %.2f/%.2f/%.2f%%'%(TotalDW,EarnDW,EarnDW/TotalDW*100,TotalHJ,EarnHJ,EarnHJ/TotalHJ*100),end='')
 
 
     # time.sleep(1)
+# t()
